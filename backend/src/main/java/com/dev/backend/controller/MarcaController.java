@@ -2,6 +2,8 @@ package com.dev.backend.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,38 +14,37 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.dev.backend.entity.Estado;
-
-import com.dev.backend.service.EstadoService;
+import com.dev.backend.entity.Marca;
+import com.dev.backend.service.MarcaService;
 
 @RestController
-@RequestMapping("/api/estado")
-public class EstadoController {
+@RequestMapping("/api/marca")
+public class MarcaController {
     
     @Autowired
-    private EstadoService estadoService;
+    private MarcaService marcaService;
 
     @GetMapping("/")
-    public List<Estado> buscarTodos(){
+    public List<Marca> buscarTodos(){
 
-        return estadoService.buscarTodos();
+        return marcaService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Estado inserir(@RequestBody Estado estado){
-           return estadoService.inserir(estado);
+    public Marca inserir(@RequestBody Marca marca){
+           return marcaService.inserir(marca);
 
     }
 
     @PutMapping("/")
-    public Estado Alterar(@RequestBody Estado estado){
-        return estadoService.alterar(estado);
+    public Marca Alterar(@RequestBody Marca marca){
+        return marcaService.alterar(marca);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
 
-        estadoService.excluir(id);
+        marcaService.excluir(id);
 
         return ResponseEntity.ok().build();
 

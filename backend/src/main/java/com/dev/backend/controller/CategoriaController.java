@@ -2,6 +2,8 @@ package com.dev.backend.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,38 +14,38 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.dev.backend.entity.Estado;
 
-import com.dev.backend.service.EstadoService;
+import com.dev.backend.entity.Categoria;
+import com.dev.backend.service.CategoriaService;
 
 @RestController
-@RequestMapping("/api/estado")
-public class EstadoController {
+@RequestMapping("/api/categoria")
+public class CategoriaController {
     
     @Autowired
-    private EstadoService estadoService;
+    private CategoriaService categoriaService;
 
     @GetMapping("/")
-    public List<Estado> buscarTodos(){
+    public List<Categoria> buscarTodos(){
 
-        return estadoService.buscarTodos();
+        return categoriaService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Estado inserir(@RequestBody Estado estado){
-           return estadoService.inserir(estado);
+    public Categoria inserir(@RequestBody Categoria categoria){
+           return categoriaService.inserir(categoria);
 
     }
 
     @PutMapping("/")
-    public Estado Alterar(@RequestBody Estado estado){
-        return estadoService.alterar(estado);
+    public Categoria Alterar(@RequestBody Categoria categoria){
+        return categoriaService.alterar(categoria);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
 
-        estadoService.excluir(id);
+        categoriaService.excluir(id);
 
         return ResponseEntity.ok().build();
 
